@@ -148,7 +148,7 @@ const StepProgress: React.FC<IHeaderProps> = ({step, userLat, userLong, userId, 
     const distanceInFeet = Math.sqrt(latDiff * latDiff + lonDiff * lonDiff) * feetPerDegree;
 
     //add feetAcc to take into account accuracy
-    if(distanceInFeet < 15 + feetAcc) {
+    if(distanceInFeet < 15 ) {
       setCloseEnough(true);
     } else {
       setCloseEnough(false);
@@ -222,7 +222,7 @@ const StepProgress: React.FC<IHeaderProps> = ({step, userLat, userLong, userId, 
 
 
 
-        { inProgress && closeEnough && navigator.platform !== 'iPhone' && (
+        { inProgress && closeEnough && (
 
             <Box>
               <MarkerEntity step={step} setImage={setImage} setInProgress={setInProgress} setSizeWarning={setSizeWarning} giveStepsTakenAchievement={giveStepsTakenAchievement} handleJourneyClick={handleJourneyClick}></MarkerEntity>
@@ -231,7 +231,7 @@ const StepProgress: React.FC<IHeaderProps> = ({step, userLat, userLong, userId, 
             </Box>
         )}
 
-        { inProgress && closeEnough && navigator.platform === 'iPhone' && (
+        { inProgress && closeEnough && (
               <Box>
                 <Button component="label" variant="contained" startIcon={<CameraAltRoundedIcon />}>
               Solve Step
