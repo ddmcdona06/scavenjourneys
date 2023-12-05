@@ -38,6 +38,14 @@ app.use(passport.authenticate('session'));
 //routes
 app.use('/auth', authRoutes);
 
+app.all('*', (req, res, next) => {
+  if (req.isAuthenticated()) {
+    next();
+  } else {
+    res.redirect('/');
+  }
+})
+
 app.get('*', (req, res) => {
   res.sendFile(path.resolve(distPath, 'index.html'), (err) => {
     if (err) {

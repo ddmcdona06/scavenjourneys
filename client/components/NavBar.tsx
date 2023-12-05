@@ -8,7 +8,7 @@ import {  AppBar, Box, Toolbar, Typography, Menu, MenuItem, IconButton } from '@
 import { FormControlLabel, FormGroup } from '@mui/material';
 
 //withheld from external types folder to exemplify interface/ assignments being passed to functional component
-//we have to assign types/interface to ensure proper typescript syntax 
+//we have to assign types/interface to ensure proper typescript syntax
 //interface to allocate types to MenuItems (path and label: string)
 interface MenuItem {
   path: string;
@@ -16,7 +16,7 @@ interface MenuItem {
 }
 //interface to set interface for NavBarProps: array of pages to link to (Profile:{path: '/', label: 'profile'} etc.)
 interface NavBarProps {
-  //menu items hold the value of MenuItem interface within an array to map over 
+  //menu items hold the value of MenuItem interface within an array to map over
   //path and label props being passed to MenuItem array elements
   menuItems: MenuItem[];
 }
@@ -26,10 +26,10 @@ const NavBar = ( {menuItems}: NavBarProps ) => {
 
   //authenticate user
   const [auth, setAuth] = React.useState<boolean | null>(true);
-  //set anchor to display or close menu in navBar 
+  //set anchor to display or close menu in navBar
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
-  //handler for setting auth 
+  //handler for setting auth
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setAuth(event.target.checked);
   };
@@ -43,7 +43,17 @@ const NavBar = ( {menuItems}: NavBarProps ) => {
   const handleClose = () => {
     setAnchorEl(null);
   };
-  
+
+  const logUserOut = () => {
+    axios.post('/auth/logout')
+    .then((data) => {
+      if(data.data === 'loggedOut') {
+        return null
+      }
+    })
+    .catch((err) => {console.error('failed to logout', err)})
+  }
+
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -62,8 +72,8 @@ const NavBar = ( {menuItems}: NavBarProps ) => {
       <AppBar position="static">
         <Toolbar>
           <IconButton
-           onClick={handleMenu} 
-           style={{ cursor: 'pointer' }} 
+            onClick={handleMenu}
+            style={{ cursor: "pointer" }}
             size="large"
             edge="start"
             color="inherit"
@@ -113,16 +123,7 @@ const NavBar = ( {menuItems}: NavBarProps ) => {
         </Toolbar>
       </AppBar>
     </Box>
-    
   );
 }
 
 export default NavBar;
-/**
- * 
- *  <ul>
-      <Link to="/journey" >Journey</Link>
-      <Link to="/profile" >Profile</Link>
-      <Link to="/leaderboard" >Leaderboard</Link>
-      </ul>
- */
