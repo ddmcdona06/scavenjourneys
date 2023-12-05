@@ -1,4 +1,4 @@
-import { createTheme } from '@mui/material/styles';
+import createTheme from '@mui/material/styles/createTheme';
 
 export const themeOptions = createTheme({
   palette: {
@@ -9,8 +9,19 @@ export const themeOptions = createTheme({
       main: '#b5870a',
     },
     background: {
-      default: '#bbada7',
+      default: '#FDF3E0',
     },
   },
+  components: {
+    MuiListItemButton: {
+      styleOverrides: {
+        root: {
+          "&.Mui-selected": {
+            border: '10px solid #9a4119',
+          }
+        }
+      }
+    }
+  }
 
 });

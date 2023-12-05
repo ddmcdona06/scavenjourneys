@@ -1,5 +1,10 @@
 {
   "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@this/types/*": ["types/*"]
+    },
+    "experimentalDecorators": true,
     "allowSyntheticDefaultImports": true,
     "declaration": true,
     "noImplicitAny": true,
@@ -11,7 +16,9 @@
     "allowJs": true,
     "outDir": "dist",
     "jsx": "react",
-    "experimentalDecorators": true,
-    "emitDecoratorMetadata": true
+    "emitDecoratorMetadata": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+
   }
 }
